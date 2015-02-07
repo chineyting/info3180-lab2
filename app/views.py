@@ -5,9 +5,10 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 
 This file creates your application.
 """
-
+import os
 from app import app
 from flask import render_template, request, redirect, url_for
+import time
 
 
 ###
@@ -25,6 +26,13 @@ def about():
     """Render the website's about page."""
     return render_template('about.html')
 
+@app.route('/profile/')
+def profile():
+  return render_template('profile.html', now = timeinfo())
+
+def timeinfo():
+  now = time.strftime("%a, %d %b %Y")
+  return now
 
 ###
 # The functions below should be applicable to all Flask apps.
